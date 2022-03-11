@@ -174,4 +174,4 @@ def predicts_separate_using_a_comma_and_a_blank_space(brewery_name: str,	review_
         return output_dict
 
 if __name__ == '__main__':
-    uvicorn.run(app)
+    uvicorn.run(app, host='127.0.0.1', port=8000)
