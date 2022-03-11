@@ -13,7 +13,7 @@ from pytorchmulticlass import PytorchMultiClass
 app = FastAPI()
  
 # Get files saved in previous work
-def read_files(path="../models/"):
+def read_files(path="./"):
     
     file = open(f"{path}brewery_name_dict.json", "r")
     brewery_name_dict = json.load(file)
