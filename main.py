@@ -11,7 +11,7 @@ import pandas as pd
 from pytorchmulticlass import PytorchMultiClass
 
 app = FastAPI()
- 
+
 # Get files saved in previous work
 def read_files(path="./"):
     
@@ -27,7 +27,8 @@ def read_files(path="./"):
     
     brewery_name_encoder = load(f'{path}brewery_name_encoder.joblib')
 
-    model = torch.load(f'{path}pytorch_nn_v3_3.pt')
+    model = PytorchMultiClass(6)
+    model.load_state_dict = (torch.load(f'{path}pytorch_nn_v3_3_dict.pt'))
 
     return brewery_name_dict, beer_style_dict, numeric_scaler, brewery_name_encoder, model
 
