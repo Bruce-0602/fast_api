@@ -173,5 +173,5 @@ def predicts_separate_using_a_comma_and_a_blank_space(brewery_name: str,	review_
             output_dict[f'beer_type for input {i+1}'] = output[i]
         return output_dict
 
-# if __name__ == '__main__':
-#     uvicorn.run(app)
+if __name__ == '__main__':
+    uvicorn.run(app)
