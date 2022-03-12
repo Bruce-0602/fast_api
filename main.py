@@ -28,7 +28,8 @@ def read_files(path="./"):
     brewery_name_encoder = load(f'{path}brewery_name_encoder.joblib')
 
     model = PytorchMultiClass(6)
-    model.load_state_dict = (torch.load(f'{path}pytorch_nn_v3_3_dict.pt'))
+    model.load_state_dict(torch.load(f'{path}pytorch_nn_v3_3_dict.pt'))
+    model.eval()
 
     return brewery_name_dict, beer_style_dict, numeric_scaler, brewery_name_encoder, model
 
@@ -136,8 +137,6 @@ def predict(brewery_name: str,	review_aroma: float, review_appearance: float, re
     if not obs_list:
         return "Please check your brewery_name input, it is probably wrong. Refer '/brewer/'(GET) for avalable brewer names"
     else:
-        # Set model to evaluation mode and start predict
-        model.eval()
         _, y_pred_tags = torch.max(model(torch.FloatTensor(obs_list)), dim=1)
 
         # Reverse beer_style_dict to find out corresponding beer_type according to prediction
@@ -157,8 +156,6 @@ def predicts_separate_using_a_comma_and_a_blank_space(brewery_name: str,	review_
     elif not obs_list:
         return "Please check your brewery_name input, it is probably wrong. Refer '/brewer/'(GET) for avalable brewer names"
     else:
-        # Set model to evaluation mode and start predict
-        model.eval()
         _, y_pred_tags = torch.max(model(torch.FloatTensor(obs_list)), dim=1)
 
         # Reverse beer_style_dict to find out corresponding beer_type according to prediction
